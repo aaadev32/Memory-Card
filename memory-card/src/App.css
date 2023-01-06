@@ -4,16 +4,26 @@
 
 #header {
   display: flex;
+  background-color: #3c096c;
+  color: #ff7900;
+  text-shadow: 2px 2px 3px #ff7900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #header-info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex-grow: 9;
   text-align: left;
   margin-left: 20px;
 }
 
 #header-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly ;
   flex-grow: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
