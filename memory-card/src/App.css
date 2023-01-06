@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+#header {
+  display: flex;
+}
+
+#header-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 9;
+  text-align: left;
+  margin-left: 20px;
+}
+
+#header-score {
+  flex-grow: 1;
+}
