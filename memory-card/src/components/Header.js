@@ -15,8 +15,6 @@ const Header = () => {
                 <div>Best Score:{bestScore}</div>
             </div>
         </div>
-
-
     );
 }
 

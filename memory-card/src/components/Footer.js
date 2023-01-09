@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
 function Footer() {
-    <div> Footer</div>    
+
+    return (
+        <div id="footer"> Footer</div>
+    );
 }
 
 export default Footer

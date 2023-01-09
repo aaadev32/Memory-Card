@@ -1,5 +1,22 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+img {
+  display: flex;
+  height: auto;
+  width: auto;
+  margin: 10px;
+  width: 290px;
+  height: 300px;
+  border: 3px solid #3c096c;
+  border-radius: 10px;
+}
+
+img:hover {
+  box-shadow: 5px 5px 10px #9d4edd, -5px -5px 10px #9d4edd;
 }
 
 #header {
@@ -22,8 +39,24 @@
 #header-score {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly ;
+  justify-content: space-evenly;
   flex-grow: 1;
+  text-align: left;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  background-color: #ff7900;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #3c096c;
+  color: #ff7900;
+  text-shadow: 2px 2px 3px #ff7900;
 }
