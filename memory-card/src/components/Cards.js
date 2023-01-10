@@ -17,19 +17,19 @@ import Wolf from '../media/wolf.jpg'
 function Cards() {
 
     return (
-        <div className="cards">
-            <img className="cards" src={Capybara}></img>
-            <img className="cards" src={Cat}></img>
-            <img className="cards" src={Dolphin}></img>
-            <img className="cards" src={Eagle}></img>
-            <img className="cards" src={Elephant}></img>
-            <img className="cards" src={Elk}></img>
-            <img className="cards" src={Owl}></img>
-            <img className="cards" src={Racoon}></img>
-            <img className="cards" src={Turtle}></img>
-            <img className="cards" src={Monkey}></img>
-            <img className="cards" src={Toucan}></img>
-            <img className="cards" src={Wolf}></img>
+        <div id="cards">
+            <img className="card-elements" src={Capybara}></img>
+            <img className="card-elements" src={Cat}></img>
+            <img className="card-elements" src={Dolphin}></img>
+            <img className="card-elements" src={Eagle}></img>
+            <img className="card-elements" src={Elephant}></img>
+            <img className="card-elements" src={Elk}></img>
+            <img className="card-elements" src={Owl}></img>
+            <img className="card-elements" src={Racoon}></img>
+            <img className="card-elements" src={Turtle}></img>
+            <img className="card-elements" src={Monkey}></img>
+            <img className="card-elements" src={Toucan}></img>
+            <img className="card-elements" src={Wolf}></img>
         </div>
     );
 }

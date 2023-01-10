@@ -1,3 +1,9 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -6,8 +12,6 @@
 
 img {
   display: flex;
-  height: auto;
-  width: auto;
   margin: 10px;
   width: 290px;
   height: 300px;
@@ -45,17 +49,20 @@ img:hover {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.cards {
+#cards {
   display: flex;
   flex-wrap: wrap;
-  flex: 1 1 auto;
   background-color: #ff7900;
+  height: 100%;
+  overflow: scroll;
+}
+
+.card-elements {
+  flex: 1 2 auto;
 }
 
 #footer {
   display: flex;
-  flex-direction: column;
-  height: 100%;
   background-color: #3c096c;
   color: #ff7900;
   text-shadow: 2px 2px 3px #ff7900;
