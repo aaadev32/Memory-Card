@@ -55,7 +55,7 @@ function Cards() {
             let randomIndex = randomArray[iteration];
             //the node list cardElements has an index accessed through the randomIndex value and has the result appended back to the DOM which ideally randomizes the original node list
             console.log(cardElements[randomIndex])
-            document.getElementById('App').appendChild(cardElements[randomIndex]);
+            document.getElementById('cards').appendChild(cardElements[randomIndex]);
             iteration++;
         });
 
