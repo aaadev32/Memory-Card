@@ -4,7 +4,7 @@ body,
   height: 100%;
 }
 
-.App {
+#App {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -52,13 +52,26 @@ img:hover {
 #cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   background-color: #ff7900;
   height: 100%;
   overflow: scroll;
 }
 
 .card-elements {
-  flex: 1 2 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: larger;
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #3c096c;
+  text-shadow: 1px 1px 3px #3c096c;
+
+}
+
+.card-images {
+  flex: 0 1 auto;
 }
 
 #footer {
