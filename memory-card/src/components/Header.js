@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import Cards from '../components/Cards.js'
 const Header = () => {
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
+
+    //this might be unnecessary
+    useEffect(() => {
+
+        return () => {
+
+        };
+
+    }, []);
 
     return (
         <div id="header">
