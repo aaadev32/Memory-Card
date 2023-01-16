@@ -16,7 +16,7 @@ import Wolf from '../media/wolf.jpg'
 function Cards() {
 
     //will contain the data-key values of each card element chosen by the user to identify if they have chosen a unique card or not and updating the score and best score in Header.js accordingly
-    let userChoices = [];
+    let userPreviousChoices = [];
 
     function randomNumberArray() {
         let randomNumberArr = [];
@@ -46,14 +46,13 @@ function Cards() {
     }
     //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
     const scoreCheck = (e) => {
-        console.log(window.event)
-
+        console.log(e.currentTarget);
     }
     //should display a popup when the game is won or lost, also display the high score when losing
     function winConditionCheck() {
 
     }
-    
+
     //copies the class elements of card-elements then removes them from the DOM, calls randomNumberArray to get a randomized array of numbers 0-11, the random array then iterated to call the data-key attributes of the class elements and repopulate the DOM
     const randomizeImages = () => {
 
@@ -85,56 +84,56 @@ function Cards() {
 
     return (
         <div id="cards">
-            <div className="card-elements" id="capybara" data-key={0} onClick={() => { randomizeImages(); scoreCheck() }}>
+            <div className="card-elements" id="capybara" data-key={0} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Capybara}></img>
                 <p>Capybara</p>
             </div>
-            <div className="card-elements" id="cat" data-key={1} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="cat" data-key={1} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Cat}></img>
                 <p>Cat</p>
             </div>
-            <div className="card-elements" id="dolphin" data-key={2} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="dolphin" data-key={2} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Dolphin}></img>
                 <p>Dolphin</p>
             </div>
-            <div className="card-elements" id="eagle" data-key={3} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="eagle" data-key={3} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Eagle}></img>
                 <p>Eagle</p>
             </div>
-            <div className="card-elements" id="elephant" data-key={4} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="elephant" data-key={4} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Elephant}></img>
                 <p>Elephant</p>
             </div>
-            <div className="card-elements" id="elk" data-key={5} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="elk" data-key={5} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Elk}></img>
                 <p>Elk</p>
             </div>
-            <div className="card-elements" id="owl" data-key={6} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="owl" data-key={6} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Owl}></img>
                 <p>Owl</p>
 
             </div>
-            <div className="card-elements" id="racoon" data-key={7} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="racoon" data-key={7} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Racoon}></img>
                 <p>Racoon</p>
             </div>
-            <div className="card-elements" id="turtle" data-key={8} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="turtle" data-key={8} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Turtle}></img>
                 <p>Turtle</p>
             </div>
-            <div className="card-elements" id="monkey" data-key={9} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="monkey" data-key={9} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Monkey}></img>
                 <p>Mondata-key</p>
             </div>
-            <div className="card-elements" id="toucan" data-key={10} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="toucan" data-key={10} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Toucan}></img>
                 <p>Toucan</p>
             </div>
-            <div className="card-elements" id="wolf" data-key={11} onClick={() => { randomizeImages(); scoreCheck(); }}>
+            <div className="card-elements" id="wolf" data-key={11} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Wolf}></img>
                 <p>Wolf</p>
             </div>
-        </div>
+        </div >
     );
 }
 
