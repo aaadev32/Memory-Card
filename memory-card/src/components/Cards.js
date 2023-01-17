@@ -14,9 +14,12 @@ import Toucan from '../media/toucan.jpg'
 import Wolf from '../media/wolf.jpg'
 
 function Cards() {
-
+    const [score, setScore] = useState(0);
+    const [bestScore, setBestScore] = useState(0);
+    let scoreExport = 0;
+    let bestScoreExport = 0;
     //will contain the data-key values of each card element chosen by the user to identify if they have chosen a unique card or not and updating the score and best score in Header.js accordingly
-    let userPreviousChoices = [];
+    let userChoiceKeys = [];
 
     function randomNumberArray() {
         let randomNumberArr = [];
@@ -46,7 +49,24 @@ function Cards() {
     }
     //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
     const scoreCheck = (e) => {
-        console.log(e.currentTarget);
+        const userChoice = e.currentTarget.dataset;
+        console.log(userChoice);
+
+        //compare every index value in userChoiceKeys state array to the current userChoice, if it is unique increment the score state, if it is not clear the array, set score to 0 and update best score if needed
+        userChoiceKeys.forEach(index => {
+            if (userChoice == index) {
+                //set score states
+                setScore(score++)
+                if (userChoice > bestScore) {
+                    bestScoreExport = userChoice
+                    setBestScore(bestScore = score);
+                }
+                return 0;
+            }
+        });
+        setScore(score = 0)
+        scoreExport = score;
+        userChoiceKeys.push(userChoice)
     }
     //should display a popup when the game is won or lost, also display the high score when losing
     function winConditionCheck() {
@@ -71,8 +91,6 @@ function Cards() {
             iteration++;
         });
     };
-
-asdf
     //this might be unnecessary
     useEffect(() => {
 
