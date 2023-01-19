@@ -13,13 +13,12 @@ import Monkey from '../media/monkey.jpeg'
 import Toucan from '../media/toucan.jpg'
 import Wolf from '../media/wolf.jpg'
 
+let userChoiceKeys = [];
 function Cards() {
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
-    let scoreExport = 0;
-    let bestScoreExport = 0;
+
     //will contain the data-key values of each card element chosen by the user to identify if they have chosen a unique card or not and updating the score and best score in Header.js accordingly
-    let userChoiceKeys = [];
 
     function randomNumberArray() {
         let randomNumberArr = [];
@@ -47,29 +46,49 @@ function Cards() {
             parent.removeChild(parent.firstChild);
         }
     }
+
     //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
     const scoreCheck = (e) => {
-        const userChoice = e.currentTarget.dataset;
-        console.log(userChoice);
+        const userChoice = e.currentTarget.dataset.key;
+        let isUnique = true;
+        if (userChoiceKeys[0] != null) {
+            console.log('asdf')
+            //compare every index value in userChoiceKeys state array to the current userChoice, if it is unique increment the score state, if it is not clear the array, set score to 0 and update best score if needed
 
-        //compare every index value in userChoiceKeys state array to the current userChoice, if it is unique increment the score state, if it is not clear the array, set score to 0 and update best score if needed
-        userChoiceKeys.forEach(index => {
-            if (userChoice == index) {
-                //set score states
-                setScore(score++)
-                if (userChoice > bestScore) {
-                    bestScoreExport = userChoice
-                    setBestScore(bestScore = score);
+            userChoiceKeys.forEach(index => {
+
+                console.log(index)
+                //player loss condition
+                if (userChoice == index) {
+                    if (score > bestScore) {
+                        console.log('qwer')
+                        setBestScore(score);
+                        document.getElementById('best-score').textContent = `High Score:${bestScore} `
+                    }
+                    isUnique = false;
+                    setScore(0);
+                    userChoiceKeys = [];
+                    document.getElementById('score').textContent = `Score: ${score}`
+                    document.getElementById('best-score').textContent = `High Score:${bestScore} `
+                    return setTimeout(alert(`You Lost! Score:${score}, High Score: ${bestScore}`), 1000);
                 }
-                return 0;
+            });
+        }
+        //its neccessary to use a bool to check if the forEach method found a matching index to the user choice as the return statement in the method is only enough to exit the loop but not the scoreCheck function
+        if (isUnique == true) {
+            console.log('test')
+            userChoiceKeys.push(userChoice)
+            //executes if player selected unique card
+            setScore(score + 1)
+            document.getElementById('score').textContent = `Score: ${score}`
+            //player win condition
+            if (score == 11) {
+                alert('Good Job You Won!');
+                setScore(0)
+                setBestScore(12)
             }
-        });
-        setScore(score = 0)
-        scoreExport = score;
-        userChoiceKeys.push(userChoice)
-    }
-    //should display a popup when the game is won or lost, also display the high score when losing
-    function winConditionCheck() {
+        }
+        console.log('scores', score, bestScore, userChoiceKeys)
 
     }
 
@@ -80,8 +99,7 @@ function Cards() {
         removeChildren(document.getElementById('cards'));
         const randomArray = randomNumberArray();
         let iteration = 0;
-        console.log(cardElements);
-        console.log(randomArray)
+
         cardElements.forEach(element => {
             // the randomArray is accessed consecutively each iteration for the random integers generated from randomNumberArray function
             let randomIndex = randomArray[iteration];
@@ -91,14 +109,13 @@ function Cards() {
             iteration++;
         });
     };
-    //this might be unnecessary
+
     useEffect(() => {
 
         return () => {
-
         };
 
-    }, []);
+    }, [score, bestScore]);
 
     return (
         <div id="cards">
@@ -141,7 +158,7 @@ function Cards() {
             </div>
             <div className="card-elements" id="monkey" data-key={9} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Monkey}></img>
-                <p>Mondata-key</p>
+                <p>Monkey</p>
             </div>
             <div className="card-elements" id="toucan" data-key={10} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
                 <img className="card-images" src={Toucan}></img>
@@ -152,6 +169,7 @@ function Cards() {
                 <p>Wolf</p>
             </div>
         </div >
+
     );
 }
 
