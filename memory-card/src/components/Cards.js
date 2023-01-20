@@ -14,9 +14,11 @@ import Toucan from '../media/toucan.jpg'
 import Wolf from '../media/wolf.jpg'
 
 let userChoiceKeys = [];
+
 function Cards() {
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
+
 
     //will contain the data-key values of each card element chosen by the user to identify if they have chosen a unique card or not and updating the score and best score in Header.js accordingly
 
@@ -49,10 +51,10 @@ function Cards() {
 
     //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
     const scoreCheck = (e) => {
+
         const userChoice = e.currentTarget.dataset.key;
         let isUnique = true;
         if (userChoiceKeys[0] != null) {
-            console.log('asdf')
             //compare every index value in userChoiceKeys state array to the current userChoice, if it is unique increment the score state, if it is not clear the array, set score to 0 and update best score if needed
 
             userChoiceKeys.forEach(index => {
@@ -61,16 +63,12 @@ function Cards() {
                 //player loss condition
                 if (userChoice == index) {
                     if (score > bestScore) {
-                        console.log('qwer')
-                        setBestScore(score);
-                        document.getElementById('best-score').textContent = `High Score:${bestScore} `
+                        setBestScore(score);;
                     }
                     isUnique = false;
                     setScore(0);
                     userChoiceKeys = [];
-                    document.getElementById('score').textContent = `Score: ${score}`
-                    document.getElementById('best-score').textContent = `High Score:${bestScore} `
-                    return setTimeout(alert(`You Lost! Score:${score}, High Score: ${bestScore}`), 1000);
+                    setTimeout(() => { alert(`You Lost! Score:${score}, High Score: ${bestScore}`) }, 500);
                 }
             });
         }
@@ -80,9 +78,8 @@ function Cards() {
             userChoiceKeys.push(userChoice)
             //executes if player selected unique card
             setScore(score + 1)
-            document.getElementById('score').textContent = `Score: ${score}`
             //player win condition
-            if (score == 11) {
+            if (score == 12) {
                 alert('Good Job You Won!');
                 setScore(0)
                 setBestScore(12)
@@ -113,6 +110,8 @@ function Cards() {
     useEffect(() => {
 
         return () => {
+            document.getElementById('score').textContent = `Score: ${score}`;
+            document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
         };
 
     }, [score, bestScore]);
@@ -172,5 +171,4 @@ function Cards() {
 
     );
 }
-
 export default Cards

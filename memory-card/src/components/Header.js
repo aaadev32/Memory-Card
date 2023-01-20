@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Cards from "../components/Cards";
 
-
-
-const Header = (exportedScore, exportedBestScore) => {
-    const [score, setScore] = useState(0);
-    const [bestScore, setBestScore] = useState(0);
-
+const Header = () => {
 
     return (
         <div id="header">
@@ -15,12 +9,11 @@ const Header = (exportedScore, exportedBestScore) => {
                 <p id="header-instructions">test your working memory in this memory card game, each time you choose a card the catalogue will be scrambled. try to get 10 unique selections to win the game!</p>
             </div>
             <div id="header-score">
-                <div id="score">Score: { }</div>
-                <div id="best-score">High Score: { }</div>
+                <div id="score">Score: 0</div>
+                <div id="best-score">High Score: 0</div>
             </div>
         </div>
     );
 }
-
 
 export default Header
