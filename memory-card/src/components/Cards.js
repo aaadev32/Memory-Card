@@ -14,6 +14,7 @@ import Toucan from '../media/toucan.jpg'
 import Wolf from '../media/wolf.jpg'
 
 let userChoiceKeys = [];
+let isUnique = true;
 
 function Cards() {
     const [score, setScore] = useState(0);
@@ -49,11 +50,12 @@ function Cards() {
         }
     }
 
-    //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
-    const scoreCheck = (e) => {
 
+    //returns a boolean value after checking the data-key attribute of the players selected card and sends an update of the score/best score to the associated nodes in the header.js file
+    const scoring = (e) => {
+
+        isUnique = true;
         const userChoice = e.currentTarget.dataset.key;
-        let isUnique = true;
         if (userChoiceKeys[0] != null) {
             //compare every index value in userChoiceKeys state array to the current userChoice, if it is unique increment the score state, if it is not clear the array, set score to 0 and update best score if needed
 
@@ -67,12 +69,10 @@ function Cards() {
                     }
                     isUnique = false;
                     setScore(0);
-                    userChoiceKeys = [];
-                    setTimeout(() => { alert(`You Lost! Score:${score}, High Score: ${bestScore}`) }, 500);
                 }
             });
         }
-        //its neccessary to use a bool to check if the forEach method found a matching index to the user choice as the return statement in the method is only enough to exit the loop but not the scoreCheck function
+        //its neccessary to use a bool to check if the forEach method found a matching index to the user choice as the return statement in the method is only enough to exit the loop but not the scoring function
         if (isUnique == true) {
             console.log('test')
             userChoiceKeys.push(userChoice)
@@ -80,7 +80,6 @@ function Cards() {
             setScore(score + 1)
             //player win condition
             if (score == 12) {
-                alert('Good Job You Won!');
                 setScore(0)
                 setBestScore(12)
             }
@@ -91,79 +90,84 @@ function Cards() {
 
     //copies the class elements of card-elements then removes them from the DOM, calls randomNumberArray to get a randomized array of numbers 0-11, the random array then iterated to call the data-key attributes of the class elements and repopulate the DOM
     const randomizeImages = () => {
-
-        const cardElements = document.querySelectorAll(".card-elements");
-        removeChildren(document.getElementById('cards'));
-        const randomArray = randomNumberArray();
-        let iteration = 0;
-
-        cardElements.forEach(element => {
-            // the randomArray is accessed consecutively each iteration for the random integers generated from randomNumberArray function
-            let randomIndex = randomArray[iteration];
-            //the node list cardElements has an index accessed through the randomIndex value and has the result appended back to the DOM which ideally randomizes the original node list
-            console.log(cardElements[randomIndex])
-            document.getElementById('cards').appendChild(cardElements[randomIndex]);
-            iteration++;
-        });
+        /*
+                const cardElements = document.querySelectorAll(".card-elements");
+                removeChildren(document.getElementById('cards'));
+                const randomArray = randomNumberArray();
+                let iteration = 0;
+        
+                cardElements.forEach(element => {
+                    // the randomArray is accessed consecutively each iteration for the random integers generated from randomNumberArray function
+                    let randomIndex = randomArray[iteration];
+                    //the node list cardElements has an index accessed through the randomIndex value and has the result appended back to the DOM which ideally randomizes the original node list
+                    console.log(cardElements[randomIndex])
+                    document.getElementById('cards').appendChild(cardElements[randomIndex]);
+                    iteration++;
+                }); */
     };
 
     useEffect(() => {
+        document.getElementById('score').textContent = `Score: ${score}`;
+        document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
+        //must check score
+        if (score == 12) {
+            alert('Good Job You Won!');
+            userChoiceKeys = [];
+        }
 
-        return () => {
-            document.getElementById('score').textContent = `Score: ${score}`;
-            document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
-        };
-
-    }, [score, bestScore]);
-
+        if (isUnique == false) {
+            alert(`You Lost! Score:${score}, High Score: ${bestScore}`)
+            userChoiceKeys = [];
+        }
+    }, [score, bestScore])
     return (
         <div id="cards">
-            <div className="card-elements" id="capybara" data-key={0} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="capybara" data-key={0} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Capybara}></img>
                 <p>Capybara</p>
             </div>
-            <div className="card-elements" id="cat" data-key={1} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="cat" data-key={1} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Cat}></img>
                 <p>Cat</p>
             </div>
-            <div className="card-elements" id="dolphin" data-key={2} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="dolphin" data-key={2} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Dolphin}></img>
                 <p>Dolphin</p>
             </div>
-            <div className="card-elements" id="eagle" data-key={3} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="eagle" data-key={3} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Eagle}></img>
                 <p>Eagle</p>
             </div>
-            <div className="card-elements" id="elephant" data-key={4} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="elephant" data-key={4} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Elephant}></img>
                 <p>Elephant</p>
             </div>
-            <div className="card-elements" id="elk" data-key={5} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="elk" data-key={5} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Elk}></img>
                 <p>Elk</p>
             </div>
-            <div className="card-elements" id="owl" data-key={6} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="owl" data-key={6} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Owl}></img>
                 <p>Owl</p>
 
             </div>
-            <div className="card-elements" id="racoon" data-key={7} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="racoon" data-key={7} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Racoon}></img>
                 <p>Racoon</p>
             </div>
-            <div className="card-elements" id="turtle" data-key={8} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="turtle" data-key={8} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Turtle}></img>
                 <p>Turtle</p>
             </div>
-            <div className="card-elements" id="monkey" data-key={9} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="monkey" data-key={9} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Monkey}></img>
                 <p>Monkey</p>
             </div>
-            <div className="card-elements" id="toucan" data-key={10} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="toucan" data-key={10} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Toucan}></img>
                 <p>Toucan</p>
             </div>
-            <div className="card-elements" id="wolf" data-key={11} onClick={(e) => { randomizeImages(); scoreCheck(e); }}>
+            <div className="card-elements" id="wolf" data-key={11} onClick={(e) => { randomizeImages(); scoring(e); }}>
                 <img className="card-images" src={Wolf}></img>
                 <p>Wolf</p>
             </div>
