@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from '../components/Header.js'
 import Capybara from '../media/capybara.jpg'
 import Cat from '../media/cat.jpg'
 import Dolphin from '../media/dolphin.jpg'
@@ -17,8 +16,8 @@ import Wolf from '../media/wolf.jpg'
 //i didnt feel it neccessary to use states as they arent used to display any information to the DOM
 let userChoiceKeys = [];
 let isUnique = true;
-//saved score is used to display the score state for the winning game alert function because every time the score state is set useEffect will update score and rerender the DOM displaying 0
-//i dont need to do this for bestScore since 
+//saved score is used to display the score state for the losing game alert function because every time the score state is set back to 0 for the end of the game useEffect will update score and rerender the DOM displaying 0
+//i dont need to do this for bestScore since its value does not have to be reset to 0 after the game ends
 let savedScore = null;
 
 function Cards() {
@@ -80,15 +79,11 @@ function Cards() {
         }
         //its neccessary to use a bool to check if the forEach method found a matching index to the user choice as the return statement in the method is only enough to exit the loop but not the scoring function
         if (isUnique == true) {
-            console.log('test')
-            userChoiceKeys.push(userChoice)
+            console.log('test');
+            userChoiceKeys.push(userChoice);
+
             //executes if player selected unique card
-            setScore(score + 1)
-            //player win condition
-            if (score == 12) {
-                setScore(0)
-                setBestScore(12)
-            }
+            setScore(score + 1);
         }
         console.log('scores', score, bestScore, userChoiceKeys)
 
@@ -96,36 +91,43 @@ function Cards() {
 
     //copies the class elements of card-elements then removes them from the DOM, calls randomNumberArray to get a randomized array of numbers 0-11, the random array then iterated to call the data-key attributes of the class elements and repopulate the DOM
     const randomizeImages = () => {
-        /*
-                const cardElements = document.querySelectorAll(".card-elements");
-                removeChildren(document.getElementById('cards'));
-                const randomArray = randomNumberArray();
-                let iteration = 0;
-        
-                cardElements.forEach(element => {
-                    // the randomArray is accessed consecutively each iteration for the random integers generated from randomNumberArray function
-                    let randomIndex = randomArray[iteration];
-                    //the node list cardElements has an index accessed through the randomIndex value and has the result appended back to the DOM which ideally randomizes the original node list
-                    console.log(cardElements[randomIndex])
-                    document.getElementById('cards').appendChild(cardElements[randomIndex]);
-                    iteration++;
-                }); */
+        const cardElements = document.querySelectorAll(".card-elements");
+        removeChildren(document.getElementById('cards'));
+        const randomArray = randomNumberArray();
+        let iteration = 0;
+
+        cardElements.forEach(element => {
+            // the randomArray is accessed consecutively each iteration for the random integers generated from randomNumberArray function
+            let randomIndex = randomArray[iteration];
+            //the node list cardElements has an index accessed through the randomIndex value and has the result appended back to the DOM which ideally randomizes the original node list
+            console.log(cardElements[randomIndex])
+            document.getElementById('cards').appendChild(cardElements[randomIndex]);
+            iteration++;
+        });
     };
 
     useEffect(() => {
-        document.getElementById('score').textContent = `Score: ${score}`;
-        document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
-        //must check score
+
+        //setting score in this block because useEffect will ignore similar checks anywhere else in the entire function, this causes another unneccessary rerender but in a small application such as it shouldnt matter.
         if (score == 12) {
-            alert('Good Job You Won!');
             userChoiceKeys = [];
+            alert('Good Job You Won!');
+            setScore(0);
+            setBestScore(12);
+            console.log(`setting score in useEffect ${score}`)
+            document.getElementById('score').textContent = `Score: ${score}`;
+            document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
         }
 
         if (isUnique == false) {
+            userChoiceKeys = [];
             alert(`You Lost! Score:${savedScore}, High Score: ${bestScore}`);
             savedScore = null;
-            userChoiceKeys = [];
         }
+
+        document.getElementById('score').textContent = `Score: ${score}`;
+        document.getElementById('best-score').textContent = `High Score: ${bestScore} `;
+
     }, [score, bestScore])
     return (
         <div id="cards">

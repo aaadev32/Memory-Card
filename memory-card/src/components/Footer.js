@@ -3,7 +3,9 @@ import React, { useState } from "react";
 function Footer() {
 
     return (
-        <div id="footer"> Footer</div>
+        <div id="footer" >
+            <a href="https://github.com/aaadev32">aaadev32@github</a>
+        </div>
     );
 }
 
