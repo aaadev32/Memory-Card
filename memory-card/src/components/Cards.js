@@ -13,8 +13,13 @@ import Monkey from '../media/monkey.jpeg'
 import Toucan from '../media/toucan.jpg'
 import Wolf from '../media/wolf.jpg'
 
+//the below 2 lines are declared globally since i do not want them being reset every time the cards function is rerun, i need the userChoiceKeys and isUnique to only be reset when the game is won or lost
+//i didnt feel it neccessary to use states as they arent used to display any information to the DOM
 let userChoiceKeys = [];
 let isUnique = true;
+//saved score is used to display the score state for the winning game alert function because every time the score state is set useEffect will update score and rerender the DOM displaying 0
+//i dont need to do this for bestScore since 
+let savedScore = null;
 
 function Cards() {
     const [score, setScore] = useState(0);
@@ -67,6 +72,7 @@ function Cards() {
                     if (score > bestScore) {
                         setBestScore(score);;
                     }
+                    savedScore = score;
                     isUnique = false;
                     setScore(0);
                 }
@@ -116,7 +122,8 @@ function Cards() {
         }
 
         if (isUnique == false) {
-            alert(`You Lost! Score:${score}, High Score: ${bestScore}`)
+            alert(`You Lost! Score:${savedScore}, High Score: ${bestScore}`);
+            savedScore = null;
             userChoiceKeys = [];
         }
     }, [score, bestScore])
