@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/Memory-Card/static/css/main.c34ca92b.css",
+    "main.js": "/Memory-Card/static/js/main.289f73f6.js",
+    "static/js/787.d6a8b40f.chunk.js": "/Memory-Card/static/js/787.d6a8b40f.chunk.js",
+    "static/media/dolphin.jpg": "/Memory-Card/static/media/dolphin.f1245eae94049fa9f693.jpg",
+    "static/media/monkey.jpeg": "/Memory-Card/static/media/monkey.c84f2e6195e6d5ed4453.jpeg",
+    "static/media/elk.jpg": "/Memory-Card/static/media/elk.c274854fd1056356b465.jpg",
+    "static/media/racoon.jpg": "/Memory-Card/static/media/racoon.27eff9820f08ecebc959.jpg",
+    "static/media/elephant.jpg": "/Memory-Card/static/media/elephant.745777dd7cebd42d12d1.jpg",
+    "static/media/leatherback-seaturtle.jpg": "/Memory-Card/static/media/leatherback-seaturtle.0760215fe746c8d06ebd.jpg",
+    "static/media/great-horned-owl.jpg": "/Memory-Card/static/media/great-horned-owl.13b18de52ce5bea1f60d.jpg",
+    "static/media/wolf.jpg": "/Memory-Card/static/media/wolf.f0986d548900a048df10.jpg",
+    "static/media/capybara.jpg": "/Memory-Card/static/media/capybara.b1a12c1b162f8f6e9ee7.jpg",
+    "static/media/eagle.jpg": "/Memory-Card/static/media/eagle.ad0ff326481d61d97ed8.jpg",
+    "static/media/toucan.jpg": "/Memory-Card/static/media/toucan.0f3515dab7abee872c11.jpg",
+    "static/media/cat.jpg": "/Memory-Card/static/media/cat.361f62bbed1a34ef9534.jpg",
+    "index.html": "/Memory-Card/index.html",
+    "main.c34ca92b.css.map": "/Memory-Card/static/css/main.c34ca92b.css.map",
+    "main.289f73f6.js.map": "/Memory-Card/static/js/main.289f73f6.js.map",
+    "787.d6a8b40f.chunk.js.map": "/Memory-Card/static/js/787.d6a8b40f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c34ca92b.css",
+    "static/js/main.289f73f6.js"
+  ]
+}
